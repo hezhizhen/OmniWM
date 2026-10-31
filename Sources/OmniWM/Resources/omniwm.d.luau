@@ -314,9 +314,19 @@ export type NotificationItem = {
     metadata: any,
 }
 
+export type NotificationReadIssue = {
+    scope: "membership" | "metadata",
+    reason: "rowLimit" | "byteLimit" | "encodingLimit" | "notificationLimit" | "missingRecord"
+        | "identifierMismatch" | "duplicateIdentifier" | "invalidMembership" | "invalidRecord" | "invalidApp"
+        | "decodeLimit" | "invalidMetadata" | "unsupportedText",
+}
+
 export type Notifications = {
     state: "loading" | "ready" | "empty" | "accessDenied" | "unavailable" | "queryError" | "malformed" | "incomplete",
     complete: boolean,
+    membershipComplete: boolean,
+    metadataComplete: boolean,
+    issues: { NotificationReadIssue },
     items: { NotificationItem },
     apps: { {
         bundle: string,

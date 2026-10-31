@@ -18555,6 +18555,171 @@
           }
         }
       }
+    },
+    "Another notification action is still in progress." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Another notification action is still in progress."
+          }
+        }
+      }
+    },
+    "Duplicate notification identifiers prevent safe clearing." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Duplicate notification identifiers prevent safe clearing."
+          }
+        }
+      }
+    },
+    "More than 256 notifications are retained. Clear some in Notification Center first." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "More than 256 notifications are retained. Clear some in Notification Center first."
+          }
+        }
+      }
+    },
+    "Notification Center's retained notification list contains invalid data." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notification Center's retained notification list contains invalid data."
+          }
+        }
+      }
+    },
+    "Notification history exceeds the database row limit." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notification history exceeds the database row limit."
+          }
+        }
+      }
+    },
+    "Notification identifiers do not match. Clearing is unavailable." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notification identifiers do not match. Clearing is unavailable."
+          }
+        }
+      }
+    },
+    "Some additional notification information could not be decoded." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Some additional notification information could not be decoded."
+          }
+        }
+      }
+    },
+    "Some notification data exceeds the decoding limit." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Some notification data exceeds the decoding limit."
+          }
+        }
+      }
+    },
+    "Some notification data exceeds the read size limit." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Some notification data exceeds the read size limit."
+          }
+        }
+      }
+    },
+    "Some notification details could not be read. Notifications can still be cleared." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Some notification details could not be read. Notifications can still be cleared."
+          }
+        }
+      }
+    },
+    "Some notification text uses an unsupported format." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Some notification text uses an unsupported format."
+          }
+        }
+      }
+    },
+    "Some retained notifications are missing from notification storage." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Some retained notifications are missing from notification storage."
+          }
+        }
+      }
+    },
+    "Some retained notifications could not be decoded." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Some retained notifications could not be decoded."
+          }
+        }
+      }
+    },
+    "Some source application information is invalid." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Some source application information is invalid."
+          }
+        }
+      }
+    },
+    "The notification snapshot size limit was reached." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The notification snapshot size limit was reached."
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

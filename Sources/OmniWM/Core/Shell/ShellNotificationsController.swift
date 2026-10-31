@@ -34,7 +34,7 @@ enum ShellNotificationsCommand: Equatable, Sendable {
         }
     }
 
-    fileprivate static func validBundle(_ value: String) -> Bool {
+    static func validBundle(_ value: String) -> Bool {
         !value.isEmpty && value.utf8.count <= 255 && value.utf8.allSatisfy {
             (48 ... 57).contains($0) || (65 ... 90).contains($0) || (97 ... 122).contains($0)
                 || $0 == 45 || $0 == 46 || $0 == 95
@@ -334,7 +334,7 @@ final class ShellNotificationsController {
     ) {
         let hadDispatched = !dispatched.isEmpty
         var restored = Set<UUID>()
-        if next.complete {
+        if next.membershipComplete {
             let retained = Set(next.items.compactMap { $0.fields?["id"]?.string.flatMap(UUID.init(uuidString:)) })
             let stable = revision == self.revision()
             for (id, marker) in dispatched {
@@ -353,7 +353,7 @@ final class ShellNotificationsController {
         {
             next.action = nil
         }
-        let empty = next.complete && next.items.isEmpty
+        let empty = next.membershipComplete && next.items.isEmpty
         if empty || (hadDispatched && dispatched.isEmpty), next.dismissAll?.fields?["active"] != .bool(true) {
             next.dismissAll = nil
             if empty { next.kept = 0 }
@@ -426,7 +426,9 @@ final class ShellNotificationsController {
     private func retainedTarget(
         bundle: String, id: UUID, kind: String
     ) -> (item: [String: ShellServiceValue], peers: Set<UUID>)? {
-        guard current.complete, current.state == "ready" || current.state == "empty" else {
+        let ready = kind == "dismiss" ? current.canDismiss
+            : current.complete && (current.state == "ready" || current.state == "empty")
+        guard ready else {
             publishAction(
                 id: id,
                 bundle: bundle,
@@ -540,6 +542,11 @@ final class ShellNotificationsController {
 
     private static func snapshotSummary(_ value: ShellNotificationsData) -> String {
         var summary = "state=\(value.state) complete=\(value.complete) items=\(value.items.count) apps=\(value.apps.count)"
+        summary += " membershipComplete=\(value.membershipComplete) metadataComplete=\(value.metadataComplete)"
+        if !value.issues.isEmpty {
+            summary += " issues=" + value.issues.map { "\($0.scope.rawValue):\($0.reason.rawValue)" }
+                .joined(separator: ",")
+        }
         if let action = value.action?.fields, let id = action["id"]?.string {
             let target = UUID(uuidString: id)
             let retained = target != nil && value.items.contains {
@@ -547,7 +554,7 @@ final class ShellNotificationsController {
                     && $0.fields?["bundle"]?.string == action["bundle"]?.string
             }
             summary += " action=\(action["kind"]?.string ?? "none") outcome=\(action["state"]?.string ?? "none")"
-                + " target=\(id) targetRetained=\(value.complete ? String(retained) : "unknown")"
+                + " target=\(id) targetRetained=\(value.membershipComplete ? String(retained) : "unknown")"
         }
         return summary
     }
@@ -556,7 +563,7 @@ final class ShellNotificationsController {
 extension ShellNotificationsController {
     private func dismissAll() -> Bool {
         guard isListening, actionTask == nil else { return false }
-        guard current.complete, current.state == "ready" || current.state == "empty" else {
+        guard current.canDismiss else {
             publishDismissAll(total: current.items.count, state: "failed", outcome: .unavailable)
             return false
         }
